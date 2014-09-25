@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Lab3 - Javascript</title>
+    <style type="text/css" media="all">
+      #test {
+        padding: 20px;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+  <div id="test"></div>
+  <script type="text/javascript" charset="utf-8">
+    var test = document.getElementById("test");
+    test.textContent = "Made with Javascript";
+    test.style.fontSize = "20px";
+    test.style.color = "white";
+    var rnd = Math.floor(Math.random() * 101);
+    var grade;
+    if (rnd >= 90) { grade = "A"; }
+    else if (rnd >= 80) { grade = "B"; }
+    else if (rnd >= 70) { grade = "C"; }
+    else if (rnd >= 60) { grade = "D"; }
+    else if (rnd >= 50) { grade = "F"; }
+    else { grade = "F"; }
+    console.log(grade);
+
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
+        console.log("0");
+        break;
+      case 1:
+        console.log("1");
+        break;
+      case 2:
+        console.log("2");
+        break;
+      case 3:
+        console.log("3");
+        break;
+      default:
+        console.log("Range Error!");
+    }
+  </script>
+  </body>
+</html>
