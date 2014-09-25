@@ -5,13 +5,14 @@ body {
 }
 
 h1 {
-  margin: 10px 0 20px;
+  margin: 20px 0 60px;
   font-size: 34px;
   text-align: center;
 }
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 /* Helper Classes ------------------------------------------------------------*/
@@ -86,4 +87,18 @@ a {
   background-color: #7771C9;
   border-radius: 10px;
   text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 50px;
+  width: 862px;
+  padding-top: 20px;
+  border-top: 1px solid #7771C9;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer a {
+  font-weight: bold;
 }
