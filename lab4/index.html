@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Rock, Paper, Scissors, Lizard, Spock</title>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="game.css" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Rock, Paper, Scissors (Lizard and Spock)</h1>
+      <section id="game-rules" class="hidden">
+        <h2>Game Rules</h2>
+        <ul>
+          <li>Scissors cut Paper</li>
+          <li>Paper covers Rock</li>
+          <li>Rock crushes Lizard</li>
+          <li>Lizard poisons Spock</li>
+          <li>Spock smashes Scissors</li>
+          <li>Scissors decapitate Lizard</li>
+          <li>Lizard eats Paper</li>
+          <li>Paper disproves Spock</li>
+          <li>Spock vaporizes Rock</li>
+          <li>Rock crushes Scissors</li>
+        </ul>
+        <a id="game-rules-back" class="btn">Back</a>
+      </section>
+      <section id="game-options" class="hidden">
+        <h2>Choose your hand</h2>
+        <a id="game-rock">
+          <img src="rock.png" title="Rock" />
+        </a>
+        <a id="game-paper">
+          <img src="paper.png" title="Paper" />
+        </a>
+        <a id="game-scissors">
+          <img src="scissors.png" title="Scissors" />
+        </a>
+        <a id="game-lizard" class="hidden">
+          <img src="lizard.png" title="Lizard" />
+        </a>
+        <a id="game-spock" class="hidden">
+          <img src="spock.png" title="Spock" />
+        </a>
+      </section>
+      <section id="game-ending" class="hidden">
+        <div id="game-score">
+          <div>
+            <strong>Victories</strong>
+            <div id="game-victories">0</div>
+          </div>
+          <div>
+            <strong>Ties</strong>
+            <div id="game-ties">0</div>
+          </div>
+          <div>
+            <strong>Defeats</strong>
+            <div id="game-defeats">0</div>
+          </div>
+        </div>
+        <div id="game-hands"></div>
+        <h1 id="game-result"></h1>
+        <a id="game-play-again" class="btn">Play Again</a>
+      </section>
+      <section id="game-menu">
+        <a id="game-basic" class="btn">Classic Game</a>
+        <a id="game-geek" class="btn">Geek Variation</a>
+        <a id="game-instructions" class="btn">Instructions</a>
+      </section>
+    </div>
+    <script src="game.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+body {
+  font-family: 'Droid Sans Mono', monospace;
+  color: #eee;
+  background: #262262;
+}
+
+h1 {
+  margin: 10px 0 20px;
+  font-size: 34px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Helper Classes ------------------------------------------------------------*/
+
+.hidden {
+  display: none !important;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 30px;
+  font-size: 24px;
+  background-color: #585E95;
+  text-align: center;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2E356B;
+}
+
+/* Skeleton ------------------------------------------------------------------*/
+
+.wrapper {
+  width: 862px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#game-menu {
+  margin-top: 40px;
+}
+
+#game-menu .btn {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+}
+
+#game-rules {
+  width: 300px;
+  margin: 0 auto;
+}
+
+#game-options {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#game-options a {
+  cursor: pointer;
+}
+
+#game-ending {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#game-score {
+  margin-bottom: 50px;
+}
+
+#game-score > div {
+  display: inline-block;
+  width: 150px;
+  padding: 10px;
+  background-color: #7771C9;
+  border-radius: 10px;
+  text-align: center;
+}
