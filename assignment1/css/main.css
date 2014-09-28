@@ -108,21 +108,21 @@ nav ul li {
 /* Carousel ------------------------------------------------------------------*/
 
 #carousel {
-  width: 400px;
+  width: 600px;
   margin: 0 auto;
 }
 
 #carousel .carousel-container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   overflow: hidden;
   border: 10px solid #34495E;
   border-radius: 10px;
 }
 
 #carousel img {
-  width: 400px;
+  width: 600px;
   position: absolute;
   top: 0;
   right: 0;
