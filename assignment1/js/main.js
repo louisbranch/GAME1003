@@ -36,7 +36,11 @@
   };
 
   Carousel.prototype.next = function (index) {
-    this.index = index || this.index + 1;
+    if (index >= 0) {
+      this.index = index;
+    } else {
+      this.index++;
+    }
     if (this.index >= this.imgs.length) this.index = 0;
     return this.current();
   };
