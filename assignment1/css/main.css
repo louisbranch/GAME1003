@@ -17,6 +17,10 @@ h1 {
   text-align: center;
 }
 
+section {
+  margin-top: 50px;
+}
+
 /* Helper Classes ------------------------------------------------------------*/
 
 .hidden {
