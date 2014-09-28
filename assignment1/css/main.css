@@ -1,0 +1,163 @@
+/* Global Elements -----------------------------------------------------------*/
+
+body {
+  font-family: 'Capriola', sans-serif;
+  color: #eee;
+  background: #111;
+}
+
+a {
+  color: #776e65;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 10px 0 20px;
+  font-size: 34px;
+  text-align: center;
+}
+
+/* Helper Classes ------------------------------------------------------------*/
+
+.hidden {
+  display: none !important;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #16A085;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.btn-group {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Skeleton ------------------------------------------------------------------*/
+
+.wrapper {
+  width: 862px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Animations ----------------------------------------------------------------*/
+
+.fadeIn {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+@-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fadeOut {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-name: fadeOut;
+          animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+@-keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Navigation ----------------------------------------------------------------*/
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+
+/* Carousel ------------------------------------------------------------------*/
+
+#carousel {
+  width: 400px;
+  margin: 0 auto;
+}
+
+#carousel .carousel-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: 10px solid #34495E;
+  border-radius: 10px;
+}
+
+#carousel img {
+  width: 400px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+#carousel .carousel-page {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#carousel .carousel-page span {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #34495E;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#carousel .carousel-page span.highlight {
+  color: #fff;
+  background-color: #776e65;
+}
+
+/* Footer  -------------------------------------------------------------------*/
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(238, 228, 218, 0.35);
+}
+
+footer .credits {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
