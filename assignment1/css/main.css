@@ -1,9 +1,10 @@
 /* Global Elements -----------------------------------------------------------*/
 
 body {
-  font-family: 'Capriola', sans-serif;
-  color: #eee;
+  margin: 0;
   background: #111;
+  color: #eee;
+  font-family: 'Capriola', sans-serif;
 }
 
 a {
@@ -96,6 +97,14 @@ section {
 
 /* Navigation ----------------------------------------------------------------*/
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #000;
+  z-index: 9999;
+}
+
 nav ul {
   list-style: none;
 }
@@ -104,6 +113,16 @@ nav ul li {
   display: inline-block;
 }
 
+/* Main Section --------------------------------------------------------------*/
+
+#main {
+  margin-top: 150px;
+}
+
+section {
+  padding-top: 150px;
+  margin-top: -150px;
+}
 
 /* Carousel ------------------------------------------------------------------*/
 
