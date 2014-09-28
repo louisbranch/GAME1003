@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>GAME1003 Week 4</title>
+		<link rel="stylesheet" type="text/css" href="Week4Style.css">
+	</head>
+	<body>
+		<div class="Stage">
+			<div class="Title" >
+				<p>Rock, Paper, Scissors</p>
+				<br>
+				<button onclick="doNewGame()">New Game</button>
+				<button id="Inst">Instructions</button>
+			</div>
+
+			<div class="Game">
+				<p>Choose which item to throw...</p>
+				<br>
+				<button onclick="doCompare(1)"><img src="rock.png" title="Rock" /></button>
+				<button onclick="doCompare(2)"><img src="paper.png" title="Paper" /></button>
+				<button onclick="doCompare(3)"><img src="scissors.png" title="Scissors" /></button>
+			</div>
+
+			<div class="End">
+				<p id="EndMsg"></p>
+				<br>
+				<button onclick="doNewGame()">New Game</button>
+        <div id="game-score">
+          <div>
+            <strong>Victories</strong>
+            <div id="game-victories">0</div>
+          </div>
+          <div>
+            <strong>Ties</strong>
+            <div id="game-ties">0</div>
+          </div>
+          <div>
+            <strong>Defeats</strong>
+            <div id="game-defeats">0</div>
+          </div>
+        </div>
+			</div>
+		</div>
+	</body>
+	<script src="Week4JS.js"></script>
+</html>
