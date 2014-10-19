@@ -1,0 +1,21 @@
+For this lab, you are going to add the following criteria onto the files we created in the lab. Be sure to download and use the Week 5 Lab Start Package that I posted on Blackboard. Here's what you need to do:
+
+- 1) You're going to be dealing 5 cards to the player and the dealer. It's a simple tally of the point values. Ace can be a value of 1 only, for this lab.
+	- You will have to figure out how to deal the cards and then display the cards in their respective spots in the card <divs> in the HTML.
+	- You are going to get plenty of extra time to do this lab. Check due date below...
+	- You should probably have two extra arrays in JavaScript: one for the player hand and one for the dealer hand.
+	- Also have two variables to keep a point total of the two hands.
+- 2) Once the hand values are tallied up, you will have to use the "msg" <p> tag at the bottom to display a message such as: "Player total: ##  Dealer total: ##  Player/Dealer wins!"
+	- Yes you have to display both totals as well as whoever won.
+
+Again, you are going to get plenty of time to figure this lab out. It is meant to be a challenge for you. I have kept it at the usual 3.75% so give it a try and you can ask me for any help or hints but I can't do it for you.
+
+***NOTE***
+----------
+Due date is Sunday, Oct 26th at 11:59pm. That's JUST before Week 9 when we come back after the break week!
+
+Zip all three files again and send them with the following naming convention:
+
+Whatever the case, name the file GAME1003_Lab5_LastnameFirstname.zip/.7z/.rar
+
+Send it to arichard6@georgebrown.ca with the same subject (GAME1003_Lab5_LastnameFirstname) as above.
