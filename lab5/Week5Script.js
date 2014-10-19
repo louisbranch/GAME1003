@@ -1,71 +1,92 @@
-var deck = [];
-var suitArray = ["Hearts","Diamonds","Clubs","Spades"];
-var faceArray = ["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"];
-var msgBar = document.getElementById("msg");
+;(function () {
 
-buildDeck(); 	// Builds the deck of cards.
-shuffleDeck(5); // Shuffles the deck 5 times.
-printDeck(); 	// Prints the shuffled deck out to the console.
+  var SUITS = ["hearts","diamonds","clubs","spades"];
+  var FACES = ["ace","two","three","four","five","six", "seven","eight","nine",
+               "ten","jack","queen","king"];
 
-function buildDeck()
-{
-	// Build the deck...
-	for (var row = 0; row < suitArray.length; row++)
-	{
-		for (var col = 0; col < faceArray.length; col++)
-		{
-			var tempCard = {};
-			tempCard.suitName = suitArray[row];
-			tempCard.faceName = faceArray[col];
-			tempCard.offsetW = (col * -144);
-			tempCard.offsetH = (row * -200);
-			tempCard.pointVal = col > 8 ? 10 : (col+1);
-			deck.push(tempCard);
-		}
-	}
-}
+  function play() {
+    var deck = buildDeck();
+    shuffleDeck(deck, 5);
+    var players = [
+      new Player("Player", deck),
+      new Player("Dealer", deck)
+    ];
+    displayHands(players);
+    displayScore(players);
+  }
 
-function shuffleDeck(numTimes)
-{
-	for (var i = 0; i < numTimes; i++) 
-	{
-		for (var j = 0; j < deck.length; j++) 
-		{
-			var tempIndex = Math.floor(Math.random() * 52);
-			var tempCard = deck[j];
-			deck[j] = deck[tempIndex];
-			deck[tempIndex] = tempCard;
-		}
-	}
-}
+  function Player(id, deck) {
+    this.id = id;
+    this.hand = deck.splice(0, 5);
+    this.points = this.calculateHandPoints();
+  }
 
-function printDeck()
-{
-	for (var i = 0; i < deck.length; i++) 
-	{
-		console.log(deck[i].faceName+" of "+deck[i].suitName+" ("+deck[i].pointVal+")");
-	}
-}
+  Player.prototype.calculateHandPoints = function () {
+    var total = 0;
+    for (var i = 0, l = this.hand.length; i < l; i ++) {
+      var card = this.hand[i];
+      total += card.value;
+    }
+    return total;
+  };
 
-/* Old onCardClick() function. 
-   Not used anymore, but some clues you need to complete Lab 5 are in here. */
-function onCardClick(cardNum) 
-{
-	if (deck.length > 0)
-	{
-		var cardId = document.getElementById("card"+(cardNum));
-		var cardDealt = {};
-		cardDealt = dealCard();
-		console.log(cardDealt.pointVal);
-		cardId.style.background = "url('Deck.gif') "+cardDealt.offsetW+"px "+cardDealt.offsetH+"px";
-		msg.innerHTML = "Cards left: "+deck.length;
-	}
-}
+  function buildDeck() {
+    var deck = [];
+    for (var row = 0; row < SUITS.length; row++) {
+      for (var col = 0; col < FACES.length; col++) {
+        deck.push({
+          suit: SUITS[row],
+          face: FACES[col],
+          offsetW: (col * -144),
+          offsetH: (row * -200),
+          value: col > 8 ? 10 : (col+1)
+        });
+      }
+    }
+    return deck;
+  }
 
-function dealCard()
-{
-	return deck.splice(0,1)[0];
-}
+  function shuffleDeck(deck, times) {
+    for (var i = 0; i < times; i++) {
+      for (var j = 0; j < deck.length; j++) {
+        var tempIndex = Math.floor(Math.random() * 52);
+        var tempCard = deck[j];
+        deck[j] = deck[tempIndex];
+        deck[tempIndex] = tempCard;
+      }
+    }
+  }
 
+  function displayHands(players) {
+    for (var i = 0; i < players.length; i++) {
+      var player = players[i];
+      var frag = document.createDocumentFragment();
+      var container = document.getElementById("hand-" + player.id);
+      var hand = player.hand;
+      for (var j = 0; j < hand.length; j++) {
+        var card = hand[j];
+        var el = document.createElement("div");
+        el.className = "card";
+        el.style.backgroundPosition = card.offsetW + "px " + card.offsetH + "px";
+        frag.appendChild(el);
+      }
+      container.appendChild(frag);
+    }
+  }
 
+  function displayScore(players) {
+    var el = document.getElementById("msg");
+    var messages = [];
+    var winner = players[0];
+    for (var i = 0; i < players.length; i++) {
+      var player = players[i];
+      messages.push(player.id + " Total: " + player.points);
+      if (player.points >= winner.points) winner = player;
+    }
+    messages.push(winner.id + " wins!");
+    el.textContent = messages.join("  ");
+  }
 
+  play();
+
+}());
