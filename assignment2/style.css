@@ -1,44 +1,32 @@
-body
-{
-	background-color: Gainsboro;
+body {
+	background-color: gainsboro;
 }
-p
-{
+
+p {
 	font-size: 24px;
-	color: White;
+	color: white;
 }
-.stage
-{
+
+.stage {
 	width: 820px;
 	height: 685px;
-	margin-left: auto;
-	margin-right: auto;
+  margin: 0 auto;
 	text-align: center;
 	background-color: #005500;
 }
-.hand
-{
+
+.hand {
 	width: 800px;
 	height: 210px;
-	margin-left: auto;
-	margin-right: auto;
+  margin: 0 auto;
 	background-color: Green;
 }
-.card
-{
+
+.card {
 	width: 134px;
  	height: 190px;
 	margin: 5px;
 	padding: 5px;
 	display: inline-block;
-	background: url('Deck.gif') -720px -800px;
+	background: url('deck.gif') -720px -800px;
 }
-
-
-
-
-
-
-
-
-

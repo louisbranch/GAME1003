@@ -3,24 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<title>GAME1003 Week 5 Cards</title>
-		<link rel="stylesheet" type="text/css" href="A2Style.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<div class="stage">
 			<p>Player Hand</p>
-			<div class="hand">
-				<div class="card" id="card1"></div>
-				<div class="card" id="card2"></div>
-			</div>
-			<button id="playCard">Play Card</button>
+			<div class="hand" id="player-hand"></div>
+			<button id="play-card">Play Card</button>
 			<p>Dealer Hand</p>
-			<div class="hand">
-				<div class="card" id="card3"></div>
-			</div>
-			<p id="winMsg">X wins the hand!
-			<p id="scoreMsg">Player wins: 0&nbsp;&nbsp;&nbsp;Dealer wins: 0</p>
+			<div class="hand" id="dealer-hand"></div>
+      <div id="win-msg"></div>
+			<div id="score-msg">
+        <div>Player wins: <span id="player-score">0</span></div>
+        <div>Dealer wins: <span id="player-score">0</span></div>
+      </div>
 		</div>
 	</body>
-	<script src="A2Script.js"></script>
+	<script src="main.js"></script>
 </html>
-
