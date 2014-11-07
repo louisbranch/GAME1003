@@ -6,6 +6,57 @@
     "eight", "nine", "ten", "jack", "queen", "king", "ace"
   ];
 
+  function Game() {
+    var deck = new Deck();
+    var decks = deck.split();
+    this.player = new Player("player", decks[0], 2);
+    this.dealer = new Player("dealer", decks[1]);
+  }
+
+  Game.prototype.start = function () {
+    while (this.player.hasCards()) {
+      var match = new Match(this.player, this.dealer);
+      var winner = match.play();
+      winner.score++;
+    }
+  };
+
+  function Player(id, deck, maxHand) {
+    this.id = id;
+    this.deck = deck;
+    this.maxHand = maxHand || 1;
+    this.score = 0;
+  }
+
+  Player.prototype.hasCards = function () {
+    return !!this.deck.cards.length;
+  };
+
+  Player.prototype.renderHand = function () {
+    var cards = this.deck.deal(this.maxHand);
+    var el = document.getElementById(this.id + "-hand");
+    for (var i = 0, l = cards.length; i < l; i ++) {
+      var card = cards[i];
+      el.appendChild(card.render());
+    }
+  };
+
+  function Match(player, dealer) {
+    this.player = player;
+    this.dealer = dealer;
+  }
+
+  Match.prototype.render = function () {
+    var player = this.player.renderHand();
+    var dealer = this.dealer.renderHand();
+  };
+
+  Match.prototype.play = function () {
+    this.render();
+    var winner = this.player;
+    return winner;
+  };
+
   // Create a deck from a list of cards or generates its own cards
   function Deck(cards) {
     if (cards) {
@@ -48,11 +99,10 @@
     }
   }
 
-  // Deals one or more cards from the deck
+  // Deals n first cards from the deck
   Deck.prototype.deal = function (number) {
     number = number || 1;
-    var cards = this.cards.splice(0, number);
-    return number == 1 ? cards[0] : cards;
+    return this.cards.splice(0, number);
   };
 
   // Split deck into smaller parts n times
@@ -76,7 +126,15 @@
   }
 
   Card.prototype.render = function () {
-    //TODO
+    var el = document.createElement("div");
+    el.className = "card";
+    el.style.backgroundPosition = this.position.x + "px " +
+                                  this.position.y + "px";
+    this.el = el;
+    return el;
   };
+
+  var game = new Game();
+  game.start();
 
 }());
