@@ -2,59 +2,99 @@
 
   var SUITS = ["hearts", "diamonds", "clubs", "spades"];
   var FACES = [
-    "two", "three", "four", "five", "six", "seven",
-    "eight", "nine", "ten", "jack", "queen", "king", "ace"
+    "ace", "two", "three", "four", "five", "six", "seven",
+    "eight", "nine", "ten", "jack", "queen", "king"
   ];
 
+  // Create a new game and split a deck for 2 players
   function Game() {
     var deck = new Deck();
     var decks = deck.split();
-    this.player = new Player("player", decks[0], 2);
-    this.dealer = new Player("dealer", decks[1]);
+    this.players = [
+      new Hand({id: "player", deck: decks[0], maxCards: 2, playable: true}),
+      new Hand({id: "dealer", deck: decks[1]})
+    ];
   }
 
   Game.prototype.start = function () {
-    while (this.player.hasCards()) {
-      var match = new Match(this.player, this.dealer);
-      var winner = match.play();
-      winner.score++;
-    }
+    var match = new Match(this);
+    var winner = match.play();
   };
 
-  function Player(id, deck, maxHand) {
-    this.id = id;
-    this.deck = deck;
-    this.maxHand = maxHand || 1;
+  function Hand(options) {
+    this.id = options.id;
+    this.deck = options.deck;
+    this.maxCards = options.maxCards || 1;
+    this.playable = options.playable;
     this.score = 0;
+    this.cards = null;
+    this.selected = null;
+    this.setEls();
   }
 
-  Player.prototype.hasCards = function () {
+  // Set current match
+  Hand.prototype.setMatch = function (match) {
+    this.match = match;
+  };
+
+  // Whether hand still has cards to play
+  Hand.prototype.hasCards = function () {
     return !!this.deck.cards.length;
   };
 
-  Player.prototype.renderHand = function () {
-    var cards = this.deck.deal(this.maxHand);
-    var el = document.getElementById(this.id + "-hand");
-    for (var i = 0, l = cards.length; i < l; i ++) {
-      var card = cards[i];
-      el.appendChild(card.render());
-    }
+  // Set hand dom element
+  Hand.prototype.setEls = function () {
+    var id = this.id;
+    this.el = document.getElementById(id + "-hand");
+    this.scoreEl = document.getElementById(id + "-score");
+    if (!this.playable) return;
+    var btn = document.getElementById(id + "-btn");
+    btn.addEventListener("click", this.play.bind(this));
   };
 
-  function Match(player, dealer) {
-    this.player = player;
-    this.dealer = dealer;
+  // Render max cards for hand and set current cards
+  Hand.prototype.render = function () {
+    this.selected = null;
+    var cards = this.deck.deal(this.maxCards);
+    for (var i = 0, l = cards.length; i < l; i ++) {
+      var card = cards[i];
+      card.setHand(this);
+      this.el.appendChild(card.render(this.playable));
+    }
+    this.cards = cards;
+  };
+
+  Hand.prototype.play = function () {
+    if (!this.selected) return;
+    console.log("playing " + this.selected.face);
+  };
+
+  Hand.prototype.increaseWins = function () {
+
+  };
+
+  // Set selected card and unselect others
+  Hand.prototype.select = function (selected) {
+    this.selected = selected;
+    this.cards.forEach(function (card) {
+      if (selected !== card) card.unselect();
+    });
+  };
+
+  function Match(game) {
+    this.game = game;
   }
 
   Match.prototype.render = function () {
-    var player = this.player.renderHand();
-    var dealer = this.dealer.renderHand();
+    var match = this;
+    this.game.players.forEach(function (hand) {
+      hand.setMatch(match);
+      hand.render();
+    });
   };
 
   Match.prototype.play = function () {
     this.render();
-    var winner = this.player;
-    return winner;
   };
 
   // Create a deck from a list of cards or generates its own cards
@@ -63,7 +103,7 @@
       this.cards = cards;
     } else {
       this.build();
-      this.shuffle(5);
+      this.shuffle();
     }
   }
 
@@ -85,18 +125,15 @@
     this.cards = cards;
   };
 
-  // Shuffle deck n times
+  // Shuffle deck
   Deck.prototype.shuffle = function(times) {
     var cards = this.cards;
-
-    for (var i = 0; i < times; i++) {
-      for (var j = 0, l = cards.length; j < l; j++) {
-        var index = Math.floor(Math.random() * l);
-        var card = cards[j];
-        cards[j] = cards[index];
-        cards[index] = card;
-      }
+    var shuffled = new Array(cards.length);
+    for (var i = 0, l = shuffled.length; i < l; i++) {
+      var index = Math.floor(Math.random() * cards.length);
+      shuffled[i] = cards.splice(index, 1)[0];
     }
+    this.cards = shuffled;
   }
 
   // Deals n first cards from the deck
@@ -125,13 +162,27 @@
     this.position = position;
   }
 
-  Card.prototype.render = function () {
+  // Render card html element and bind click function
+  Card.prototype.render = function (selectable) {
     var el = document.createElement("div");
-    el.className = "card";
     el.style.backgroundPosition = this.position.x + "px " +
                                   this.position.y + "px";
+    if (selectable) el.onclick = this.select.bind(this);
     this.el = el;
     return el;
+  };
+
+  Card.prototype.setHand = function (hand) {
+    this.hand = hand;
+  };
+
+  Card.prototype.select = function () {
+    this.el.className = "selected";
+    this.hand.select(this);
+  };
+
+  Card.prototype.unselect = function () {
+    this.el.className = "";
   };
 
   var game = new Game();

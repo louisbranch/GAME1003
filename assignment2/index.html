@@ -3,19 +3,26 @@
 	<head>
 		<meta charset="utf-8">
 		<title>GAME1003 Week 5 Cards</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<div class="stage">
-			<p>Player Hand</p>
-			<div class="hand" id="player-hand"></div>
-			<button id="play-card">Play Card</button>
-			<p>Dealer Hand</p>
-			<div class="hand" id="dealer-hand"></div>
+		<div class="container">
+			<h2>Player Hand</h2>
+			<div class="well hand" id="player-hand"></div>
+      <div class="text-center">
+        <button id="player-btn" class="btn btn-success btn-lg">Play Card</button>
+      </div>
+      <h2>Dealer Hand</h2>
+			<div class="well hand" id="dealer-hand"></div>
       <div id="win-msg"></div>
 			<div id="score-msg">
-        <div>Player wins: <span id="player-score">0</span></div>
-        <div>Dealer wins: <span id="player-score">0</span></div>
+        <div>Player wins:
+          <span id="player-score" class="label label-success">0</span>
+        </div>
+        <div>Dealer wins:
+          <span id="dealer-score" class="label label-danger">0</span>
+        </div>
       </div>
 		</div>
 	</body>
