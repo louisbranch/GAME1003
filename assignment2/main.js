@@ -10,15 +10,30 @@
   function Game() {
     var deck = new Deck();
     var decks = deck.split();
-    this.players = [
+    this.hands = [
       new Hand({id: "player", deck: decks[0], maxCards: 2, playable: true}),
       new Hand({id: "dealer", deck: decks[1]})
     ];
   }
 
   Game.prototype.start = function () {
-    var match = new Match(this);
-    var winner = match.play();
+    playAudio("battle", .3);
+    this.play();
+  };
+
+  Game.prototype.play = function () {
+    var game = this;
+    var match = new Match(this.hands);
+    match.play(function (winner) {
+      winner.increaseScore();
+      if (winner.hasCards()) game.play();
+      else game.end();
+    });
+  }
+
+  Game.prototype.end = function () {
+    stopAudio("battle");
+    playAudio("ending", .3);
   };
 
   function Hand(options) {
@@ -55,6 +70,7 @@
   // Render max cards for hand and set current cards
   Hand.prototype.render = function () {
     this.selected = null;
+    this.el.innerHTML = "";
     var cards = this.deck.deal(this.maxCards);
     for (var i = 0, l = cards.length; i < l; i ++) {
       var card = cards[i];
@@ -64,13 +80,38 @@
     this.cards = cards;
   };
 
+  // End match if there is a card selected
   Hand.prototype.play = function () {
     if (!this.selected) return;
-    console.log("playing " + this.selected.face);
+    this.match.end();
   };
 
-  Hand.prototype.increaseWins = function () {
+  // Returns how many points selected card or first card worth
+  Hand.prototype.points = function () {
+    var card = this.selected || this.cards[0];
+    return card.value;
+  };
 
+  // Remove card from cards available for selection
+  Hand.prototype.removeCard = function () {
+    var index = 0;
+    if (this.selected) index = this.cards.indexOf(this.selected);
+    return this.cards.splice(index, 1);
+  };
+
+  // Reshuffle unused cards back to deck
+  Hand.prototype.reshuffle = function () {
+    if (!this.cards.length) return;
+    var deck = this.deck.cards;
+    this.cards.forEach(function (card) {
+      var index = Math.floor(Math.random() * deck.length);
+      deck.splice(index, 0, card);
+    });
+  };
+
+  // Increase score while updating UI
+  Hand.prototype.increaseScore = function () {
+    this.scoreEl.textContent = ++this.score;
   };
 
   // Set selected card and unselect others
@@ -81,20 +122,46 @@
     });
   };
 
-  function Match(game) {
-    this.game = game;
+  function Match(hands) {
+    var match = this;
+    this.hands = hands;
+    this.hands.forEach(function (hand) {
+      hand.setMatch(match);
+    });
   }
 
+  // Render a new match hands and their cards
   Match.prototype.render = function () {
-    var match = this;
-    this.game.players.forEach(function (hand) {
-      hand.setMatch(match);
+    this.hands.forEach(function (hand) {
       hand.render();
     });
   };
 
-  Match.prototype.play = function () {
+  Match.prototype.play = function (callback) {
     this.render();
+    this.endCallback = callback;
+  };
+
+  Match.prototype.end = function () {
+    var winner;
+
+    this.hands.forEach(function (hand) {
+      if (!winner) {
+        winner = hand;
+      } else if (winner.points() <= hand.points() ) {
+        winner = hand;
+      }
+      hand.removeCard();
+      hand.reshuffle();
+    });
+
+    if (winner.id === "player") {
+      playAudio("hit");
+    } else {
+      playAudio("miss");
+    }
+
+    this.endCallback(winner);
   };
 
   // Create a deck from a list of cards or generates its own cards
@@ -184,6 +251,18 @@
   Card.prototype.unselect = function () {
     this.el.className = "";
   };
+
+  function playAudio(id, volume) {
+    var sound = document.querySelector("audio#sound-" + id);
+    sound.volume = volume || 1;
+    sound.load();
+    sound.play();
+  };
+
+  function stopAudio(id) {
+    var sound = document.querySelector("audio#sound-" + id);
+    sound.pause();
+  }
 
   var game = new Game();
   game.start();

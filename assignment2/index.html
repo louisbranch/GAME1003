@@ -8,23 +8,29 @@
 	</head>
 	<body>
 		<div class="container">
+			<div class="pull-right">
+        <h3>Player wins:
+          <span id="player-score" class="label label-success">0</span>
+        </h3>
+      </div>
 			<h2>Player Hand</h2>
 			<div class="well hand" id="player-hand"></div>
       <div class="text-center">
         <button id="player-btn" class="btn btn-success btn-lg">Play Card</button>
       </div>
+			<div class="pull-right">
+        <h3>Dealer wins:
+          <span id="dealer-score" class="label label-danger">0</span>
+        </h3>
+      </div>
       <h2>Dealer Hand</h2>
 			<div class="well hand" id="dealer-hand"></div>
       <div id="win-msg"></div>
-			<div id="score-msg">
-        <div>Player wins:
-          <span id="player-score" class="label label-success">0</span>
-        </div>
-        <div>Dealer wins:
-          <span id="dealer-score" class="label label-danger">0</span>
-        </div>
-      </div>
 		</div>
+    <audio src="sounds/hit.mp3" id="sound-hit"></audio>
+    <audio src="sounds/miss.mp3" id="sound-miss"></audio>
+    <audio src="sounds/pokemon-battle.mp3" id="sound-battle" loop></audio>
+    <audio src="sounds/pokemon-ending.mp3" id="sound-ending" loop></audio>
+    <script src="main.js"></script>
 	</body>
-	<script src="main.js"></script>
 </html>
