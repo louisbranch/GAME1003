@@ -1,3 +1,45 @@
+html {
+  background: #172633 no-repeat center center fixed;
+  background-size: cover;
+  background-image: url('imgs/bg.jpg');
+}
+
+html, body, .container {
+  height: 100%;
+}
+
+body {
+  background: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1, h2, h3 {
+  color: #fff;
+}
+
+p.jumbotron {
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+}
+
+.well {
+  background-color: #333;
+  border-color: #222;
+}
+
+.pull-right h3 {
+  margin: 5px 5px 0 0;
+}
+
+#game-menu {
+  margin-top: 30px;
+  text-align: center;
+}
+
 .hand {
   text-align: center;
 }
@@ -7,8 +49,8 @@
 	width: 144px;
  	height: 200px;
 	margin: 5px;
-	background: url('deck.gif') -720px -800px;
-  border: 4px solid #f5f5f5;
+	background: url('imgs/deck.gif') -720px -800px;
+  border: 4px solid #333;
   border-radius: 10px;
   box-sizing: content-box;
 }
@@ -21,7 +63,25 @@
   border-color: #aa3333;
 }
 
-#player-hand > .selected,
-#player-hand > .selected:hover {
+#player-hand > .active,
+#player-hand > .active:hover {
   border: 8px solid #00a936;
+}
+
+#win-msg, #end-msg {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#game-end {
+  text-align: center;
+}
+
+#game-menu img,
+#game-end img {
+  display: block;
+  margin: 20px auto;
+
 }

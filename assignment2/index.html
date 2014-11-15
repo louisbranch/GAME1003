@@ -8,29 +8,50 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="pull-right">
-        <h3>Player wins:
-          <span id="player-score" class="label label-success">0</span>
-        </h3>
+      <h1>WAR</h1>
+      <div id="game-menu">
+        <p class="jumbotron">
+          Welcome to WAR, the game where the rules are made up and points don't matter!
+        </p>
+        <img src="imgs/start.gif" />
+        <ul class="list-unstyled">
+          <li><a class="btn btn-default btn-lg" id="game-start">Start</a></li>
+        </ul>
       </div>
-			<h2>Player Hand</h2>
-			<div class="well hand" id="player-hand"></div>
-      <div class="text-center">
-        <button id="player-btn" class="btn btn-success btn-lg">Play Card</button>
+      <div id="game-stage" class="hidden">
+        <div>
+          <div class="pull-right">
+            <h3>Player wins:
+              <span id="player-score" class="label label-success">0</span>
+            </h3>
+          </div>
+          <h2>Player Hand</h2>
+          <div class="well hand" id="player-hand"></div>
+          <div class="text-center">
+            <button id="player-btn" class="btn btn-default btn-lg">Play Card</button>
+          </div>
+        </div>
+        <div>
+          <div class="pull-right">
+            <h3>Dealer wins:
+              <span id="dealer-score" class="label label-danger">0</span>
+            </h3>
+          </div>
+          <h2>Dealer Hand</h2>
+          <div class="well hand" id="dealer-hand"></div>
+        </div>
+        <div id="win-msg"></div>
       </div>
-			<div class="pull-right">
-        <h3>Dealer wins:
-          <span id="dealer-score" class="label label-danger">0</span>
-        </h3>
+      <div id="game-end" class="well">
+        <div id="end-msg"></div>
+        <img src="imgs/victory.gif" id="game-victory" class="hidden" />
+        <img src="imgs/defeat.gif" id="game-defeat"  class="hidden"/>
+        <button id="game-restart" type="button" class="btn btn-default btn-lg">Play Again</button>
       </div>
-      <h2>Dealer Hand</h2>
-			<div class="well hand" id="dealer-hand"></div>
-      <div id="win-msg"></div>
-		</div>
-    <audio src="sounds/hit.mp3" id="sound-hit"></audio>
-    <audio src="sounds/miss.mp3" id="sound-miss"></audio>
-    <audio src="sounds/pokemon-battle.mp3" id="sound-battle" loop></audio>
-    <audio src="sounds/pokemon-ending.mp3" id="sound-ending" loop></audio>
+    </div>
+    <audio src="sounds/shot.wav" id="sound-hit"></audio>
+    <audio src="sounds/miss.wav" id="sound-miss"></audio>
+    <audio src="sounds/trooper.mp3" id="sound-battle" loop></audio>
     <script src="main.js"></script>
 	</body>
 </html>
